@@ -1,8 +1,145 @@
-.div {
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* 首屏样式 */
+.main-content {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #F2F1F6;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.frame {
+    width: 1512px;
+    height: 982px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* 顶部橙色条 */
+.orange-header {
+    width: 1512px;
+    height: 133px;
+    background: linear-gradient(90deg, #F27B02 0%, #F99704 100%);
+}
+
+/* 右下角标题 */
+.title-container {
+    position: absolute;
+    right: 15%;
+    bottom: 12%;
+    text-align: right;
+    width: 25.2%;
+}
+
+.web-design {
+    color: #1B1B1B;
+    font-size: clamp(32px, 2.6vw, 40px);
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+    line-height: 2;
+    display: block;
+}
+
+.muse-transfer {
+    color: #1B1B1B;
+    font-size: clamp(60px, 5.3vw, 80px);
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+}
+
+/* 探索按钮 */
+.explore-button {
+    width: 140px;
+    height: 140px;
+    left: 12.37%;
+    top: 45.82%;
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.explore-button:hover {
+    transform: scale(1.05);
+}
+
+.explore-text {
+    position: absolute;
+    left: 20px;
+    top: 17px;
+    color: black;
+    font-size: 20px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+}
+
+/* 替换加号图标为SVG图片 */
+.plus-icon {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    width: 33px;
+    height: 33px;
+    background-image: url('assets/plus-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* 移除旧的加号样式 */
+.circle,
+.horizontal-line,
+.vertical-line {
+    display: none;
+}
+
+/* 描述文本 */
+.description {
+    width: 330px;
+    height: 71px;
+    left: 187px;
+    top: 379px;
+    position: absolute;
+    color: #393939;
+    font-size: 24px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 300;
+    line-height: 24px;
+}
+
+/* 模糊光效 */
+.blur-effect {
+    width: 480px;
+    height: 60px;
+    left: 772px;
+    top: 619px;
+    position: absolute;
+    box-shadow: 106px 106px 106px;
+    border-radius: 9999px;
+    filter: blur(106px);
+}
+
+/* 保持原有的加载动画样式不变 */
+.loading-container {
     background: #ebebeb;
     height: 100vh;
-    position: relative;
-    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,5 +185,22 @@
     100% {
         opacity: 0;
         transform: scale(0.8);
+    }
+}
+
+/* 修改过渡动画相关样式 */
+.loading-container.transition {
+    animation: hideContent 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes hideContent {
+    0% {
+        /* SVG位于页面中心，宽600px高133px
+           圆点在SVG中的位置是(456, 26)
+           相对于SVG中心的偏移是(156, -40.5) */
+        clip-path: circle(150% at calc(50% + 156px) calc(50% - 40.5px));
+    }
+    100% {
+        clip-path: circle(0% at calc(50% + 156px) calc(50% - 40.5px));
     }
 }
