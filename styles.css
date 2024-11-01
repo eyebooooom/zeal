@@ -22,16 +22,56 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    cursor: none; /* 隐藏默认鼠标 */
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    background: #1B1B1B;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    mix-blend-mode: difference; /* 与底层内容混合 */
+}
+
+/* 鼠标hover状态 */
+.cursor.hover {
+    animation: cursorPulse 1s infinite;
+}
+
+/* 鼠标hover到可点击元素时的样式 */
+.cursor.hover-clickable {
+    background: #F27B02; /* 橙色 */
+    mix-blend-mode: normal;
+}
+
+@keyframes cursorPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 添加可点击元素的样式 */
+a, button, .explore-button, .work-item {
+    cursor: none;
 }
 
 /* 首屏样式 */
 .main-content {
-    position: fixed;
+    position: relative;
     width: 100%;
     height: 100vh;
     background: #F2F1F6;
-    z-index: 1;
     overflow: hidden;
 }
 
@@ -90,11 +130,11 @@ body {
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
 }
 
 .explore-button:hover {
-    transform: scale(1.05);
+    border-radius: 10px;
 }
 
 .explore-text {
@@ -117,6 +157,11 @@ body {
     background-image: url('assets/plus-icon.svg');
     background-size: contain;
     background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+}
+
+.explore-button:hover .plus-icon {
+    transform: rotate(90deg);
 }
 
 /* 移除旧的加号样式 */
@@ -223,5 +268,241 @@ body {
     }
     100% {
         clip-path: circle(0% at calc(50% + 156px) calc(50% - 40.5px));
+    }
+}
+
+/* 在现有样式后添加 */
+
+/* 导航栏样式 */
+.nav-container {
+    position: fixed;
+    top: 24px;
+    width: 100%;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.menu-container {
+    background: white;
+    border-radius: 41px;
+    backdrop-filter: blur(20px);
+    padding: 4px 4px 4px 30px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-right: 110px;
+}
+
+.menu-items {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.menu-items a {
+    color: #2E0818;
+    font-size: 24px;
+    font-family: 'Zain', sans-serif;
+    text-decoration: none;
+    font-weight: 400;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 激活状态样式 */
+.menu-items a.active {
+    font-weight: 700;
+}
+
+/* 小红点样式 */
+.menu-items a.active::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: #FB0066;
+    border-radius: 50%;
+    margin-bottom: -5px;
+    margin-left: 1px; /* 调整小红点与文字的距离 */
+    display: block;
+}
+
+/* 移除原有的dot样式 */
+.dot {
+    display: none;
+}
+
+.contact-btn {
+    background: #2E0818;
+    border-radius: 46px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 24px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+/* 作品展示区样式 */
+.works-section {
+    padding: 70px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    align-items: center;
+}
+
+.work-item {
+    width: 1372px;
+    height: 760px;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.see-all-btn {
+    padding: 10px 20px;
+    border: 1px solid #2E0818;
+    border-radius: 46px;
+    color: #2E0818;
+    font-size: 24px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.see-all-btn .line {
+    width: 26px;
+    height: 1px;
+    background: #2E0818;
+}
+
+.see-all-btn .arrow-icon {
+    width: 26px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.see-all-btn:hover {
+    background: #2E0818;
+    color: white;
+}
+
+.see-all-btn:hover .arrow-icon {
+    transform: translateX(5px);
+    filter: brightness(0) invert(1); /* 将箭头变为白色 */
+}
+
+/* 页脚样式 */
+.footer {
+    background: #2E0818;
+    padding: 70px 0 23px;
+    position: relative;
+    width: 100%;
+    min-height: 680px;
+    overflow: hidden;
+}
+
+.footer-content {
+    max-width: 1512px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.footer-logo {
+    position: absolute;
+    left: 0;
+    top: 273px;
+    width: 100%;
+}
+
+.footer-logo img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 70px;
+}
+
+.footer-links-container {
+    position: absolute;
+    right: 70px;
+    top: 71px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.links-group-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.link-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.link-group h3 {
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 14px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 20px;
+}
+
+.link-group a {
+    color: white;
+    font-size: 20px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+    line-height: 20px;
+    text-decoration: none;
+    margin-bottom: 0;
+    margin-right:80px;
+}
+
+.footer-bottom {
+    position: absolute;
+    right: 70px;
+    bottom: 23px;
+    color: rgba(255, 255, 255, 0.40);
+    font-size: 12px;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 300;
+    line-height: 20px;
+}
+
+/* Logo样式 */
+.logo img {
+    height: 47px;
+    width: auto;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
