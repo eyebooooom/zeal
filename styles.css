@@ -388,16 +388,11 @@ a, button, .explore-button, .work-item {
     transition: all 0.3s ease;
 }
 
-.see-all-btn .line {
-    width: 26px;
-    height: 1px;
-    background: #2E0818;
-}
-
 .see-all-btn .arrow-icon {
     width: 26px;
     height: auto;
     transition: transform 0.3s ease;
+    color: #2E0818; /* 使用currentColor，这样颜色会跟随按钮状态改变 */
 }
 
 .see-all-btn:hover {
@@ -407,7 +402,7 @@ a, button, .explore-button, .work-item {
 
 .see-all-btn:hover .arrow-icon {
     transform: translateX(5px);
-    filter: brightness(0) invert(1); /* 将箭头变为白色 */
+    color: white; /* hover时箭头变白色 */
 }
 
 /* 页脚样式 */
