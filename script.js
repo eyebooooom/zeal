@@ -40,17 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const delay = Math.random() * 50 + 20;
             setTimeout(updateProgress, delay);
         } else {
-            setTimeout(() => {
-                loadingContainer.classList.add('transition');
+            // 立即显示 main-content
+            const mainContent = document.querySelector('.main-content');
+            mainContent.classList.add('show');
+            
+            // 在 main-content 动画结束后显示 nav-container
+            mainContent.addEventListener('transitionend', () => {
+                // 显示导航栏
+                navContainer.classList.add('visible');
                 
+                // 移除加载容器
+                loadingContainer.classList.add('transition');
                 loadingContainer.addEventListener('animationend', () => {
                     loadingContainer.remove();
-                    // 加载动画结束后显示导航栏
-                    navContainer.style.visibility = 'visible';
-                    navContainer.style.opacity = '1';
-                    navContainer.style.transform = 'translateY(0)';
                 });
-            }, 200);
+            }, { once: true });
         }
     }
 

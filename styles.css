@@ -73,6 +73,13 @@ a, button, .explore-button, .work-item {
     height: 100vh;
     background: #F2F1F6;
     overflow: hidden;
+    z-index: 5; /* 确保内容在加载容器之下 */
+    clip-path: circle(0% at calc(50% + 156px) calc(50% - 40.5px));
+    transition: clip-path 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.main-content.show {
+    clip-path: circle(150% at calc(50% + 156px) calc(50% - 40.5px));
 }
 
 .frame {
@@ -256,18 +263,26 @@ a, button, .explore-button, .work-item {
 
 /* 修改过渡动画相关样式 */
 .loading-container.transition {
-    animation: hideContent 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: revealContent 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    position: relative;
+    z-index: 10; /* 确保加载容器在内容之上 */
 }
 
-@keyframes hideContent {
+@keyframes revealContent {
     0% {
-        /* SVG位于页面中心，宽600px高133px
-           圆点在SVG中的位置是(456, 26)
-           相对于SVG中心的偏移是(156, -40.5) */
-        clip-path: circle(150% at calc(50% + 156px) calc(50% - 40.5px));
+        clip-path: circle(0% at calc(50% + 156px) calc(50% - 40.5px));
     }
     100% {
+        clip-path: circle(150% at calc(50% + 156px) calc(50% - 40.5px));
+    }
+}
+
+@keyframes showContent {
+    0% {
         clip-path: circle(0% at calc(50% + 156px) calc(50% - 40.5px));
+    }
+    100% {
+        clip-path: circle(150% at calc(50% + 156px) calc(50% - 40.5px));
     }
 }
 
@@ -282,9 +297,15 @@ a, button, .explore-button, .work-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1;
+    z-index: 6;
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.nav-container.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .menu-container {
