@@ -97,14 +97,17 @@ a {
 }
 
 .contact-btn {
-    padding: 12px 24px;
-    background-color: #2E0818;
+    background: #2E0818;
+    border-radius: 46px;
+    padding: 10px 20px;
     color: white;
+    font-size: 24px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
     border: none;
-    border-radius: 100px;
     cursor: pointer;
 }
-
+/* 大标题 */
 .work-header {
     display: flex;
     justify-content: space-between;
@@ -138,7 +141,7 @@ a {
     align-items: center;
     gap: 16px;
 }
-
+/* 顶部标签栏样式 */
 .tag {
     padding: 10px 20px;
     border-radius: 46px;
@@ -160,10 +163,81 @@ a {
     font-weight: 400;
     border: 1px solid rgba(46, 8, 24, 0.20);
 }
-
+/* 分割线样式 */
 .separator {
     width: calc(100% - 100px);
     height: 1px;
     background-color: #c3c3c3;
     margin: 0px 50px;
+}
+/* 作品展示样式 */
+.work-showcase {
+    padding: 50px 0 50px 0;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+    max-width: calc(100% - 100px);
+    margin: 0 auto;
+}
+
+.work-item {
+    display: flex;
+    width:auto;
+    height:auto;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.work-image-container {
+    position: relative;
+}
+
+.work-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.showcase-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 4px 12px;
+    background: linear-gradient(247deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid white;
+    border-radius: 11px;
+    color: white;
+    font-size: 14px;
+    font-family: Zain;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 24px;
+}
+
+.work-info {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.work-info h2 {
+    color: #2E0818;
+    font-size: 28px;
+    font-family: Zain;
+    font-weight: 800;
+    line-height: 32px;
+    margin: 0 0 0 0;
+}
+
+.work-info p {
+    color: #7E6E75;
+    font-size: 18px;
+    font-family: Zain;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 9px 0 100px 0 ;
 }
