@@ -72,3 +72,59 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(updateProgress, 500);
     }
 });
+
+function initWorkScroll() {
+    const works = document.querySelectorAll('.index-work-item');
+    const wrappers = document.querySelectorAll('.work-wrapper');
+    const footer = document.querySelector('.footer');
+    const seeAllBtn = document.querySelector('.see-all-btn');
+    const triggerStart = window.innerHeight;
+    let ticking = false; // 用于requestAnimationFrame节流
+
+    function updateWorks() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        works.forEach((work, index) => {
+            const trigger = triggerStart + (index * window.innerHeight * 0.8);// 作品触发点
+            
+            // 最后一个work的特殊处理
+            if (index === works.length - 1) {
+                const lastWorkTrigger = trigger + window.innerHeight;
+                
+                // 当滚动超过最后一个work时
+                if (scrollTop > lastWorkTrigger) {
+                    work.style.position = 'absolute';
+                    work.style.top = `${lastWorkTrigger}px`;
+                } else {
+                    work.style.position = 'fixed';
+                    work.style.top = '0';
+                }
+            }
+            
+            if (scrollTop > trigger) {
+                work.classList.add('active');
+                wrappers[index].style.visibility = 'visible';
+            } else {
+                work.classList.remove('active');
+                wrappers[index].style.visibility = 'hidden';
+            }
+        });
+    }
+
+    // 优化的滚动事件处理
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateWorks();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateWorks();
+}
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', initWorkScroll);

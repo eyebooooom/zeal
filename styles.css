@@ -83,32 +83,29 @@ a, button, .explore-button, .work-item {
 }
 
 .frame {
-    width: 1512px;
-    height: 982px;
+    width: 100%;
+    height: 100%;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
 
-
-/* 顶部橙色条 */
-.orange-header {
-    width: 1512px;
-    height: 133px;
-    background: linear-gradient(90deg, #F27B02 0%, #F99704 100%);
+.first-work {
+    width: 100%;
+    height: 100%;
 }
 
 /* 右下角标题 */
 .title-container {
     position: absolute;
-    right: 15%;
-    bottom: 12%;
+    right: 5%;
+    bottom: 5%;
     text-align: right;
     width: 25.2%;
 }
 
-.web-design {
+.title {
     color: #1B1B1B;
     font-size: clamp(32px, 2.6vw, 40px);
     font-family: 'Zain', sans-serif;
@@ -117,7 +114,7 @@ a, button, .explore-button, .work-item {
     display: block;
 }
 
-.muse-transfer {
+.subtitle {
     color: #1B1B1B;
     font-size: clamp(60px, 5.3vw, 80px);
     font-family: 'Zain', sans-serif;
@@ -127,14 +124,34 @@ a, button, .explore-button, .work-item {
 }
 
 /* 探索按钮 */
-.explore-button {
-    width: 140px;
-    height: 140px;
+.explore {
+    position: absolute;
     left: 12.37%;
     top: 45.82%;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+}
+
+/* 描述文本 */
+.description {
+    display: flex;
+    width: 330px;
+    position: relative;
+    color: #393939;
+    font-size: 24px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 300;
+    line-height: 24px;
+}
+
+.explore-button {
+    display: flex;
+    width: 140px;
+    height: 140px;
     background: white;
     border-radius: 20px;
+    position: relative;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease, border-radius 0.3s ease;
@@ -178,31 +195,6 @@ a, button, .explore-button, .work-item {
     display: none;
 }
 
-/* 描述文本 */
-.description {
-    width: 330px;
-    height: 71px;
-    left: 187px;
-    top: 379px;
-    position: absolute;
-    color: #393939;
-    font-size: 24px;
-    font-family: 'Zain', sans-serif;
-    font-weight: 300;
-    line-height: 24px;
-}
-
-/* 模糊光效 */
-.blur-effect {
-    width: 480px;
-    height: 60px;
-    left: 772px;
-    top: 619px;
-    position: absolute;
-    box-shadow: 106px 106px 106px;
-    border-radius: 9999px;
-    filter: blur(106px);
-}
 
 /* 保持原有的加载动画样式不变 */
 .loading-container {
@@ -371,29 +363,53 @@ a, button, .explore-button, .work-item {
 }
 
 /* 作品展示区样式 */
-.works-section {
-    padding: 70px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 70px;
-    align-items: center;
+.index-works-section {
+    position: relative;
+    min-height: 300vh; /* 保持滚动空间 */
+    margin-bottom: 100vh; /* 为最后一个work腾出空间 */
 }
 
-.work-item {
-    width: 1372px;
-    height: 760px;
-    border-radius: 40px;
+.work-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    visibility: hidden;
+    z-index: 1;
+    will-change: transform; /* 提示浏览器优化渲染 */
+}
+
+.work-wrapper .index-work-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+    border-radius: 150px;
     overflow: hidden;
+    transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+                border-radius 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    will-change: transform, border-radius; /* 提示浏览器优化这两个属性的变化 */
+    backface-visibility: hidden; /* 提升性能 */
+    perspective: 1000px; /* 3D加速 */
 }
 
-.work-item img {
+.work-wrapper .index-work-item.active {
+    visibility: visible;
+    transform: translateY(0);
+    border-radius: 0;
+}
+
+.work-wrapper .index-work-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 .see-all-btn {
+    position: relative;
+    z-index: 2; /* 确保按钮在works之上 */
+    margin-top: 100vh; /* 在最后一个work之后显示 */
     padding: 10px 20px;
     border: 1px solid #2E0818;
     border-radius: 46px;
@@ -428,9 +444,10 @@ a, button, .explore-button, .work-item {
 
 /* 页脚样式 */
 .footer {
+    position: relative;
+    z-index: 2; /* 确保页脚在works之上 */
     background: #2E0818;
     padding: 70px 0 23px;
-    position: relative;
     width: 100%;
     min-height: 680px;
     overflow: hidden;
@@ -520,5 +537,12 @@ a, button, .explore-button, .work-item {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* 添加媒体查询以适应不同设备 */
+@media (prefers-reduced-motion: reduce) {
+    .work-wrapper .index-work-item {
+        transition: none;
     }
 }
