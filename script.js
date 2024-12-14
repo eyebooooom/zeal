@@ -78,40 +78,88 @@ function initWorkScroll() {
     const wrappers = document.querySelectorAll('.work-wrapper');
     const footer = document.querySelector('.footer');
     const seeAllBtn = document.querySelector('.see-all-btn');
-    const triggerStart = window.innerHeight;
-    let ticking = false; // 用于requestAnimationFrame节流
+    const triggerStart = 0;
+    let ticking = false;
+    let currentActiveIndex = -1;
+
+    // 初始化页脚样式
+    footer.style.position = 'fixed';
+    footer.style.bottom = '0';
+    footer.style.left = '0';
+    footer.style.width = '100%';
+    footer.style.transition = 'transform 1s ease, visibility 1s ease, opacity 1s ease';
+    footer.style.transform = 'translateY(100%)';
+    footer.style.visibility = 'hidden';
+    footer.style.opacity = '0';
+    footer.style.zIndex = '6';
+    
+    // 初始化"查看全部"按钮样式
+    seeAllBtn.style.position = 'fixed';
+    seeAllBtn.style.bottom = '20px';
+    seeAllBtn.style.left = '50%';
+    seeAllBtn.style.transform = 'translateX(-50%) translateY(100%)';
+    seeAllBtn.style.transition = 'transform 1s ease, visibility 1s ease';
+    seeAllBtn.style.visibility = 'hidden';
+    seeAllBtn.style.zIndex = '7';
+
+    // 确保页面初始位置时页脚不显示
+    if (window.scrollY === 0) {
+        footer.style.visibility = 'hidden';
+        footer.style.opacity = '0';
+        footer.style.transform = 'translateY(100%)';
+        seeAllBtn.style.visibility = 'hidden';
+        seeAllBtn.style.transform = 'translateY(100%)';
+    }
 
     function updateWorks() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
         
+        // 先处理所有作品卡片
         works.forEach((work, index) => {
-            const trigger = triggerStart + (index * window.innerHeight * 0.8);// 作品触发点
+            const trigger = index * window.innerHeight;
             
-            // 最后一个work的特殊处理
-            if (index === works.length - 1) {
-                const lastWorkTrigger = trigger + window.innerHeight;
-                
-                // 当滚动超过最后一个work时
-                if (scrollTop > lastWorkTrigger) {
-                    work.style.position = 'absolute';
-                    work.style.top = `${lastWorkTrigger}px`;
-                } else {
-                    work.style.position = 'fixed';
-                    work.style.top = '0';
-                }
-            }
+            console.log(`作品 ${index} 触发点:`, trigger);
             
             if (scrollTop > trigger) {
                 work.classList.add('active');
                 wrappers[index].style.visibility = 'visible';
+                currentActiveIndex = index;
+                
+                console.log(`激活作品 ${index}`);
             } else {
                 work.classList.remove('active');
                 wrappers[index].style.visibility = 'hidden';
             }
         });
+
+        // 将页脚作为最后一张卡片处理
+        const footerTrigger = works.length * window.innerHeight;
+        console.log('页脚触发点:', footerTrigger);
+        console.log('当前滚动位置:', scrollTop);
+        
+        if (scrollTop >= footerTrigger) {
+            footer.style.visibility = 'visible';
+            footer.style.opacity = '1';
+            footer.style.transform = 'translateY(0)';
+            seeAllBtn.style.visibility = 'visible';
+            seeAllBtn.style.transform = 'translateY(0)';
+            
+            console.log('显示页脚');
+        } else {
+            footer.style.visibility = 'hidden';
+            footer.style.opacity = '0';
+            footer.style.transform = 'translateY(100%)';
+            seeAllBtn.style.visibility = 'hidden';
+            seeAllBtn.style.transform = 'translateY(100%)';
+        }
     }
 
-    // 优化的滚动事件处理
+    // 计算总高度（作品数量 + 页脚）
+    const totalHeight = (works.length + 1) * window.innerHeight;
+    document.body.style.height = `${totalHeight}px`;
+    console.log('设置的总高度:', totalHeight);
+    console.log('作品数量:', works.length);
+
     function onScroll() {
         if (!ticking) {
             requestAnimationFrame(() => {
@@ -123,6 +171,8 @@ function initWorkScroll() {
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // 初始调用一次更新
     updateWorks();
 }
 

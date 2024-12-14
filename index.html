@@ -10,6 +10,7 @@
     <link rel="preload" href="./fonts/Zain.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 </head>
 <body>
+
     <!-- 首屏内容 -->
     <div class="main-content">
         <div class="frame">
@@ -28,7 +29,7 @@
                 MuseTransfer Is a fast transfer tool for creative people in the MUSE matrix.
             </div>
             <!-- 探索按钮 -->
-            <div class="explore-button">
+            <div class="explore-button" onclick="window.open('https://art.musetransfer.com/', '_blank')">
                 <div class="explore-text">EXPLORE</div>
                 <div class="plus-icon">
                     <div class="circle"></div>
@@ -76,11 +77,33 @@
         <div class="menu-container">
             <div class="menu-items">
                 <a href="#" class="active">Home</a>
-                <span class="dot"></span>
                 <a href="work.html">Work</a>
                 <a href="#">About</a>
             </div>
-            <button class="contact-btn" onclick="window.location.href='test.html'">Contact</button>
+            <button class="contact-btn">Contact</button>
+            
+            <!-- 添加弹窗 -->
+            <div class="contact-popup">
+                <div class="popup-content">
+                    <div class="qr-container">
+                        <div class="qr-code">
+                            <img src="assets/qrcode.png" alt="QR Code">
+                        </div>
+                        <div class="qr-text">Scan it with Wechat</div>
+                    </div>
+                    <div class="email-container">
+                        <div class="email-box">
+                            <span class="email-label">Email:</span>
+                            <span class="email-address">xu_art@hotmail.com</span>
+                           <div class="email-icon">
+                                <a href="mailto:xu_art@hotmail.com">
+                                    <div class="email-icon-box" style="background-image: url('assets/mail-to-right.svg');"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -172,5 +195,6 @@
     </footer>
 
     <script src="script.js"></script>
+    
 </body>
 </html>
