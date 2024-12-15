@@ -2,6 +2,10 @@
 body {
     background-color: #F4F4F4;
     color: #2E0818;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        cursor: none; /* 隐藏默认鼠标 */
 }
 
 /* 确保所有链接文字也使用相同颜色 */
