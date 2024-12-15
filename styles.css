@@ -66,14 +66,23 @@ a, button, .explore-button, .work-item {
     cursor: none;
 }
 
-/* 首屏样式 */
+/* 添加新的包装容器样式 */
+.first-screen-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 5;
+}
+
+/* 修改原有的main-content样式 */
 .main-content {
-    position: fixed;
+    position: fixed; /* 改回relative */
     width: 100%;
     height: 100vh;
     background: #F2F1F6;
     overflow: hidden;
-    z-index: 5; /* 确保内容在加载容器之下 */
     clip-path: circle(0% at calc(50% + 156px) calc(50% - 40.5px));
     transition: clip-path 1.2s cubic-bezier(0.7, 0, 0.3, 1);
 }
