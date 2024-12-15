@@ -59,7 +59,7 @@ a {
     display: flex;
     align-items: center;
     gap: 24px;
-    margin-right: 110px;
+    margin-right: 98px;
 }
 
 .work-menu-items {
@@ -191,6 +191,11 @@ a {
     flex-direction: column;
     gap: 24px;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.work-item:hover {
+    transform: translateY(-5px);
 }
 
 .work-image-container {
@@ -242,4 +247,9 @@ a {
     font-weight: 400;
     line-height: 24px;
     margin: 9px 0 100px 0 ;
+}
+
+.cursor.hover-clickable {
+    background: #F27B02; /* 橙色 */
+    mix-blend-mode: normal;
 }

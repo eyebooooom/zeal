@@ -41,9 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!shouldShowLoading) {
         // 直接显示内容，跳过加载动画
-        loadingContainer.style.display = 'none';
-        mainContent.classList.add('show');
-        navContainer.classList.add('visible');
+        if (loadingContainer) {
+            loadingContainer.style.display = 'none';
+            mainContent.classList.add('show');
+            navContainer.classList.add('visible');
+        } else {
+            console.error('未找到 loadingContainer 元素');
+        }
     } else {
         // 设置访问标记
         sessionStorage.setItem('hasVisited', 'true');
@@ -142,6 +146,7 @@ function initFilterTags() {
         });
     });
 }
+
 function initWorkScroll() {
     const works = document.querySelectorAll('.index-work-item');
     const wrappers = document.querySelectorAll('.work-wrapper');
