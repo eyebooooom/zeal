@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>痴设计｜Zeal Design</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="work.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="preload" href="./fonts/Zain-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Zain-Light.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="./fonts/Zain.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+</head>
+<body>
+    <div class="cursor"></div>
+    <!-- 导航栏 -->
+    <nav class="work-nav-container">
+        <div class="work-logo">
+            <a href="index.html?skipLoading=true">
+                <img src="assets/logo-black.svg" alt="Logo">
+            </a>
+        </div>
+        
+        <div class="work-menu-container">
+            <div class="work-menu-items">
+                <a href="index.html?skipLoading=true">Home</a>
+                <a href="work.html">Work</a>
+                <a href="#" class="active">About</a>
+            </div>
+            <button class="contact-btn">Contact</button>
+            
+            <!-- 添加弹窗 -->
+            <div class="contact-popup">
+                <div class="popup-content">
+                    <div class="qr-container">
+                        <div class="qr-code">
+                            <img src="assets/qrcode.png" alt="QR Code">
+                        </div>
+                        <div class="qr-text">Scan it with Wechat</div>
+                    </div>
+                    <div class="email-container">
+                        <div class="email-box">
+                            <span class="email-label">Email:</span>
+                            <span class="email-address">xu_art@hotmail.com</span>
+                            <div class="email-icon">
+                                <a href="mailto:xu_art@hotmail.com">
+                                    <div class="email-icon-box" style="background-image: url('assets/mail-to-right.svg');"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="work-header">
+        <div class="work-title">
+            <div class="work-heading">About</div>
+            <div class="title-dot"></div>
+        </div>
+        
+    </div>
+
+    <div class="separator"></div>
+    <!-- slogan -->
+    <div class="slogan-container">
+        <img src="assets/slogan.svg" alt="Slogan">
+    </div>
+
+    <div class="introduction-container">
+        <div class="introduction-text">
+            <!-- 英文简介 -->
+            <div class="intro-en">
+                <p>Zeal Design, a vibrant and youthful design company, is based in the dynamic city of Shanghai, China.</p>
+                <p>We embrace a fluid approach, celebrating a variety of styles and breaking free from traditional constraints. Our distinctiveness is the cornerstone of our design philosophy and project management, forging a unique trajectory in the design industry. We champion originality as the lifeblood and dynamism of design, ensuring its continuous innovation and freshness.</p>
+                <p>In the realms of UI/UX, brand identity, graphic design, and AI-generated content (AIGC), Zeal Design delivers specialized and diverse services to our clients. We are dedicated to driving value through creativity and excellence in design, fostering brand development and advancement.</p>
+            </div>
+            <!-- 中文简介 -->
+            <div class="intro-cn">
+                <p>Zeal Design，一家年轻设计公司，位于中国东部的繁华都市——上海。</p>
+                <p>我们不拘泥于定位，不受限于固定模式，不囿于单一风格，不拘于常规，更不设边界。我们的独特性不仅塑造了我们的设计思维，也指导着我们的项目运作。我们坚信原创是设计的精髓和活力之源，是保持设计新鲜感的不二法门。</p>
+                <p>在UI/UX、品牌设计、平面设计以及AI生成内容（AIGC）等多个领域，Zeal Design为众多客户提供了专业而多元化的服务。我们致力于以创新和卓越的设计，为客户创造价值，推动品牌成长。</p>
+            </div>
+        </div>
+        <div class="introduction-image">
+            <img src="assets/about.png" alt="Introduction Image">
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- 左侧Logo -->
+            <div class="footer-logo">
+                <img src="assets/vector-black.svg" alt="Footer Logo">
+            </div>
+            
+            <!-- 右侧链接组 -->
+            <div class="footer-links-container">
+                <!-- Sitemap和Social media组 -->
+                <div class="links-group-wrapper">
+                    <div class="link-group">
+                        <h3>Sitemap</h3>
+                        <a href="#">Home</a>
+                        <a href="#">Work</a>
+                        <a href="#">About</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Social media</h3>
+                        <a href="#">Instagram</a>
+                        <a href="#">Behance</a>
+                        <a href="#">Twitter</a>
+                    </div>
+                    <div class="link-group">
+                        <h3>Mail</h3>
+                        <a href="mailto:xu_art@hotmail.com">xu_art@hotmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <!-- 底部备案信息 -->
+        <div class="footer-bottom">
+            <span>浙ICP备2024129569号</span>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

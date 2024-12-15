@@ -405,6 +405,62 @@ a, button, .explore-button, .work-item {
     object-fit: cover;
 }
 
+/* 修改explore的样式使其适应卡片布局 */
+.work-wrapper .explore {
+    position: absolute;
+    left: 12.37%;
+    top: 45.82%;
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    z-index: 2; /* 确保在图片上层 */
+}
+
+
+
+/* 确保description在卡片中正确显示 */
+.work-wrapper .description {
+    display: flex;
+    width: 330px;
+    color: #393939;
+    font-size: 24px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 300;
+    line-height: 24px;
+}
+
+/* 调整explore按钮在卡片中的样式 */
+.work-wrapper .explore-button {
+    display: flex;
+    width: 140px;
+    height: 140px;
+    background: white;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
+}
+
+.work-wrapper .explore-button:hover {
+    border-radius: 10px;
+}
+
+/* 确保explore内容随卡片一起移动 */
+.work-wrapper .index-work-item.active .explore {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 添加explore的过渡动画 */
+.work-wrapper .explore {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: 0.5s; /* 在卡片显示后再显示explore内容 */
+}
+
+
 .see-all-btn {
     position: relative;
     z-index: 6; /* 确保按钮在works之上 */
