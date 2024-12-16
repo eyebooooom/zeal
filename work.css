@@ -214,6 +214,7 @@ a {
 }
 
 .showcase-tag {
+    display: none; /* 隐藏标签 */
     position: absolute;
     top: 16px;
     right: 16px;

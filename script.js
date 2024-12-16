@@ -167,14 +167,7 @@ function initWorkScroll() {
     footer.style.opacity = '0';
     footer.style.zIndex = '6';
     
-    // 初始化"查看全部"按钮样式
-    seeAllBtn.style.position = 'fixed';
-    seeAllBtn.style.bottom = '20px';
-    seeAllBtn.style.left = '50%';
-    seeAllBtn.style.transform = 'translateX(-50%) translateY(100%)';
-    seeAllBtn.style.transition = 'transform 1s ease, visibility 1s ease';
-    seeAllBtn.style.visibility = 'hidden';
-    seeAllBtn.style.zIndex = '7';
+
 
     // 确保页面初始位置时页脚不显示
     if (window.scrollY === 0) {

@@ -98,11 +98,17 @@ a, button, .explore-button, .work-item {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+   
 }
 
 .first-work {
     width: 100%;
     height: 100%;
+}
+
+.first-work img{
+    object-fit: cover; /* 保持图片比例，自动缩放 */
+    object-position: bottom; /* 确保底部显示 */
 }
 
 /* 右下角标题 */
@@ -136,12 +142,19 @@ a, button, .explore-button, .work-item {
 .explore {
     position: absolute;
     left: 12.37%;
-    top: 45.82%;
+    top: 38%;
     display: flex;
     flex-direction: column;
     gap: 27px;
 }
-
+.explore-right {
+    position: absolute;
+    right: 12.37%;
+    top: 38%;
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+}
 /* 描述文本 */
 .description {
     display: flex;
@@ -412,13 +425,14 @@ a, button, .explore-button, .work-item {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: bottom;
 }
 
 /* 修改explore的样式使其适应卡片布局 */
 .work-wrapper .explore {
     position: absolute;
     left: 12.37%;
-    top: 45.82%;
+    top: 38%;
     display: flex;
     flex-direction: column;
     gap: 27px;
@@ -431,7 +445,7 @@ a, button, .explore-button, .work-item {
 .work-wrapper .description {
     display: flex;
     width: 330px;
-    color: #393939;
+    color: white;
     font-size: 24px;
     font-family: 'Zain', sans-serif;
     font-weight: 300;
@@ -470,14 +484,20 @@ a, button, .explore-button, .work-item {
 }
 
 
+.button-container {
+    display: flex; /* 使用flexbox布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中（如果需要） */
+    padding:30px;
+}
+
 .see-all-btn {
-    position: relative;
-    z-index: 6; /* 确保按钮在works之上 */
-    margin-top: 100vh; /* 在最后一个work之后显示 */
+    position: absolute;
+    z-index: 8; /* 确保按钮在works之上 */
     padding: 10px 20px;
-    border: 1px solid #2E0818;
+    border: 1px solid white;
     border-radius: 46px;
-    color: #2E0818;
+    color: white;
     font-size: 24px;
     font-family: 'Zain', sans-serif;
     font-weight: 700;
@@ -493,12 +513,7 @@ a, button, .explore-button, .work-item {
     width: 26px;
     height: auto;
     transition: transform 0.3s ease;
-    color: #2E0818; /* 使用currentColor，这样颜色会跟随按钮状态改变 */
-}
-
-.see-all-btn:hover {
-    background: #2E0818;
-    color: white;
+    color: white; /* 使用currentColor，这样颜色会跟随按钮状态改变 */
 }
 
 .see-all-btn:hover .arrow-icon {
@@ -511,7 +526,7 @@ a, button, .explore-button, .work-item {
     position: relative;
     z-index: 7; /* 确保页脚在works之上 */
     background: #2E0818;
-    padding: 70px 0 23px;
+    padding: 100px 0 30px;
     width: 100%;
     min-height: 680px;
     overflow: hidden;
@@ -718,3 +733,4 @@ a, button, .explore-button, .work-item {
     opacity: 1;
     visibility: visible;
 }
+
