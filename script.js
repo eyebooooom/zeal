@@ -64,11 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     loadingContainer.addEventListener('animationend', () => {
                         loadingContainer.remove();
                         document.body.style.overflow = '';
-
-                        // 加载完成后显示页脚
-                        footer.style.visibility = 'visible';
-                        footer.style.opacity = '1';
-                        footer.style.transform = 'translateY(0)';
                     });
                 }, { once: true });
             }
