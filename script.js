@@ -2,40 +2,23 @@ console.log('脚本已加载');
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM已加载完成');
-    
-    // 创建自定义鼠标元素
-    const cursor = document.createElement('div');
-    cursor.classList.add('cursor');
-    document.body.appendChild(cursor);
-
-    // 更新鼠标位置
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX - 10 + 'px';
-        cursor.style.top = e.clientY - 10 + 'px';
-    });
-
-    // 添加hover效果
-    const clickableElements = document.querySelectorAll('a, button, .explore-button, .work-item');
-    clickableElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursor.classList.add('hover');
-            // 检查是否是文字或按钮元素
-            if (element.tagName === 'A' || element.tagName === 'BUTTON') {
-                cursor.classList.add('hover-clickable');
-            }
-        });
-
-        element.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hover');
-            cursor.classList.remove('hover-clickable');
-        });
-    });
 
     const loadingContainer = document.querySelector('.loading-container');
     const navContainer = document.querySelector('.nav-container');
     const mainContent = document.querySelector('.main-content');
+    const footer = document.querySelector('.footer');
     
-    // 检查是否需要显示加载动画
+    // 首先检查是否为移动设备
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // 如果是移动设备，隐藏当前页面内容
+        document.body.style.display = 'none'; // 隐藏页面内容
+        window.location.href = 'https://muselink.cc/zeal';
+        return;
+    }
+
+    // 检查是否需要显示加载动画（仅在桌面端执行）
     const shouldShowLoading = !sessionStorage.getItem('hasVisited') && 
                             !new URLSearchParams(window.location.search).has('skipLoading');
 
@@ -49,8 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('未找到 loadingContainer 元素');
         }
     } else {
+        // 禁用滚动
+        document.body.style.overflow = 'hidden';
+
         // 设置访问标记
         sessionStorage.setItem('hasVisited', 'true');
+        
+        // 初始化页脚样式
+        footer.style.visibility = 'hidden'; // 确保初始时页脚隐藏
+        footer.style.opacity = '0';
+        footer.style.transform = 'translateY(100%)';
         
         // 执行原有的加载动画逻辑
         const progressElement = document.querySelector('._75');
@@ -72,6 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     loadingContainer.classList.add('transition');
                     loadingContainer.addEventListener('animationend', () => {
                         loadingContainer.remove();
+                        document.body.style.overflow = '';
+
+                        // 加载完成后显示页脚
+                        footer.style.visibility = 'visible';
+                        footer.style.opacity = '1';
+                        footer.style.transform = 'translateY(0)';
                     });
                 }, { once: true });
             }
@@ -151,7 +148,6 @@ function initWorkScroll() {
     const works = document.querySelectorAll('.index-work-item');
     const wrappers = document.querySelectorAll('.work-wrapper');
     const footer = document.querySelector('.footer');
-    const seeAllBtn = document.querySelector('.see-all-btn');
     const triggerStart = 0;
     let ticking = false;
     let currentActiveIndex = -1;
@@ -161,7 +157,7 @@ function initWorkScroll() {
     footer.style.bottom = '0';
     footer.style.left = '0';
     footer.style.width = '100%';
-    footer.style.transition = 'transform 1s ease, visibility 1s ease, opacity 1s ease';
+  footer.style.transition = 'transform 1s ease, visibility 1s ease, opacity 1s ease';
     footer.style.transform = 'translateY(100%)';
     footer.style.visibility = 'hidden';
     footer.style.opacity = '0';
@@ -174,8 +170,6 @@ function initWorkScroll() {
         footer.style.visibility = 'hidden';
         footer.style.opacity = '0';
         footer.style.transform = 'translateY(100%)';
-        seeAllBtn.style.visibility = 'hidden';
-        seeAllBtn.style.transform = 'translateY(100%)';
     }
 
     function updateWorks() {
@@ -208,16 +202,12 @@ function initWorkScroll() {
             footer.style.visibility = 'visible';
             footer.style.opacity = '1';
             footer.style.transform = 'translateY(0)';
-            seeAllBtn.style.visibility = 'visible';
-            seeAllBtn.style.transform = 'translateY(0)';
             
             console.log('显示页脚');
         } else {
             footer.style.visibility = 'hidden';
             footer.style.opacity = '0';
             footer.style.transform = 'translateY(100%)';
-            seeAllBtn.style.visibility = 'hidden';
-            seeAllBtn.style.transform = 'translateY(100%)';
         }
     }
 

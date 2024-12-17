@@ -2,35 +2,6 @@ console.log('脚本已加载');
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM已加载完成');
-    
-    // 创建自定义鼠标元素
-    const cursor = document.createElement('div');
-    cursor.classList.add('cursor');
-    document.body.appendChild(cursor);
-
-    // 更新鼠标位置
-    document.addEventListener('mousemove', (e) => {
-        const cursor = document.querySelector('.cursor');
-        cursor.style.left = e.clientX - 10 + 'px';
-        cursor.style.top = e.clientY - 10 + 'px';
-    });
-
-    // 添加hover效果
-    const clickableElements = document.querySelectorAll('a, button, .explore-button, .work-item');
-    clickableElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            cursor.classList.add('hover');
-            // 检查是否是文字或按钮元素
-            if (element.tagName === 'A' || element.tagName === 'BUTTON') {
-                cursor.classList.add('hover-clickable');
-            }
-        });
-
-        element.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hover');
-            cursor.classList.remove('hover-clickable');
-        });
-    });
 
     // 初始化筛选标签功能
     initFilterTags();

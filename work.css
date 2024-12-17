@@ -2,10 +2,30 @@
 body {
     background-color: #F4F4F4;
     color: #2E0818;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        cursor: none; /* 隐藏默认鼠标 */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    cursor: none; /* 隐藏默认鼠标 */
+}
+@font-face {
+    font-family: 'Zain';
+    src: url('./fonts/Zain.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zain';
+    src: url('./fonts/Zain-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zain';
+    src: url('./fonts/Zain-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
 }
 
 /* 确保所有链接文字也使用相同颜色 */
@@ -16,9 +36,9 @@ a {
 /* 页脚样式 */
 .footer {
     background: #f4f4f4;
-    padding: 70px 0 23px;
     position: relative;
     width: 100%;
+    height:100vh;
     min-height: 680px;
     overflow: hidden;
 }
@@ -109,7 +129,6 @@ a {
     font-family: 'Zain', sans-serif;
     font-weight: 700;
     border: none;
-    cursor: pointer;
 }
 /* 大标题 */
 .work-header {
@@ -153,7 +172,6 @@ a {
     font-family: Zain;
     font-size: 16px;
     line-height: 16px;
-    cursor: pointer;
 }
 
 .tag.active {
@@ -195,7 +213,6 @@ a {
     flex-direction: column;
     gap: 24px;
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
 }
 
 .work-item:hover {
@@ -254,7 +271,110 @@ a {
     margin: 9px 0 100px 0 ;
 }
 
-.cursor.hover-clickable {
-    background: #F27B02; /* 橙色 */
-    mix-blend-mode: normal;
+
+/* 弹窗样式 */
+.contact-popup {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    width: 360px;
+    background: #F5F5F5;
+    border-radius: 20px;
+    box-shadow: 0px 4px 9px rgba(112, 112, 112, 0.10);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.popup-content {
+    padding: 0 0 23px 0;
+    background: #F5F5F5;
+    border-radius: 20px;
+}
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    background: white;
+    border-radius: 20px;
+    padding: 40px 0 36px 0;
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    background: #ECECEC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* 确保超出部分隐藏 */
+}
+
+.qr-code img {
+    width: 100%; /* 使图片宽度占满容器 */
+    height: 100%; /* 使图片高度占满容器 */
+    object-fit: contain; /* 保持图片比例，自动缩放 */
+}
+
+.qr-text {
+    color: #2E0818;
+    font-size: 16px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 300;
+}
+
+.email-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.email-box {
+    width: 273px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    position: relative;
+}
+
+.email-label {
+    color: #2E0818;
+    font-size: 16px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 700;
+}
+
+.email-address {
+    color: #2E0818;
+    font-size: 16px;
+    font-family: 'Zain', sans-serif;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+.email-icon {
+    position: absolute;
+    right: 14px;
+    width: 24px;
+    height: 24px;
+}
+
+.email-icon-box {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+}
+
+
+/* 显示弹窗的状态 */
+.contact-btn:hover + .contact-popup,
+.contact-popup:hover {
+    opacity: 1;
+    visibility: visible;
 }
