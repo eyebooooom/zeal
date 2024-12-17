@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.querySelector('.main-content');
     const footer = document.querySelector('.footer');
     
+        // 初始化页脚样式
+        footer.style.visibility = 'hidden'; // 确保初始时页脚隐藏
+        footer.style.opacity = '0';
+        footer.style.transform = 'translateY(100%)';
+
     // 首先检查是否为移动设备
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
     
@@ -37,11 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 设置访问标记
         sessionStorage.setItem('hasVisited', 'true');
-        
-        // 初始化页脚样式
-        footer.style.visibility = 'hidden'; // 确保初始时页脚隐藏
-        footer.style.opacity = '0';
-        footer.style.transform = 'translateY(100%)';
         
         // 执行原有的加载动画逻辑
         const progressElement = document.querySelector('._75');
@@ -139,6 +139,7 @@ function initFilterTags() {
     });
 }
 
+// 页脚和卡片功能
 function initWorkScroll() {
     const works = document.querySelectorAll('.index-work-item');
     const wrappers = document.querySelectorAll('.work-wrapper');

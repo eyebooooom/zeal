@@ -38,9 +38,11 @@ a {
     background: #f4f4f4;
     position: relative;
     width: 100%;
-    height:100vh;
+    height: 100vh;
     min-height: 680px;
     overflow: hidden;
+    display: block; /* 默认展示页脚 */
+    opacity:1;
 }
 /* 页脚链接样式 */
 .footer a {
