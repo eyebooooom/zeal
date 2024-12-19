@@ -171,23 +171,28 @@ function initWorkScroll() {
     function updateWorks() {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         
-        // 先处理所有作品卡片
-        works.forEach((work, index) => {
-            const trigger = index * window.innerHeight;
-            
-            console.log(`作品 ${index} 触发点:`, trigger);
-            
-            if (scrollTop > trigger) {
-                work.classList.add('active');
-                wrappers[index].style.visibility = 'visible';
-                currentActiveIndex = index;
-                
-                console.log(`激活作品 ${index}`);
-            } else {
-                work.classList.remove('active');
+    // 卡片激活逻辑
+    works.forEach((work, index) => {
+        const trigger = index * window.innerHeight;
+        
+        if (scrollTop > trigger) {
+            // 向下滚动时显示
+            work.classList.add('active');
+            work.classList.remove('up');
+            wrappers[index].style.visibility = 'visible';
+            currentActiveIndex = index;
+        } else if (scrollTop <= trigger  && work.classList.contains('active')) {
+            // 向上滚动时
+            work.classList.remove('active');
+            work.classList.add('up');
+            // 移除延时，直接设置visibility
+            wrappers[index].style.visibility = 'visible'; // 改为visible以保持动画可见
+              // 设置一个延时来隐藏wrapper，让动画有时间执行
+              setTimeout(() => {
                 wrappers[index].style.visibility = 'hidden';
-            }
-        });
+            }, 1500); // 与CSS过渡时间相匹配
+        }
+    });
 
         // 将页脚作为最后一张卡片处理
         const footerTrigger = works.length * window.innerHeight;

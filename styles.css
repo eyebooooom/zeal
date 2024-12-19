@@ -116,6 +116,7 @@ a, button, .explore-button, .work-item {
     display: flex;
     flex-direction: column;
     gap: 27px;
+    z-index: 10;
 }
 .explore-right {
     position: absolute;
@@ -368,10 +369,15 @@ a, button, .explore-button, .work-item {
     perspective: 1000px; /* 3D加速 */
 }
 
-.work-wrapper .index-work-item.active {
+.work-wrapper .index-work-item.up {
+    transform: translateY(100%);
     visibility: visible;
+}
+
+.work-wrapper .index-work-item.active {
     transform: translateY(0);
-    border-radius: 0;
+    border-radius: 0; /* 添加圆角变化 */
+    visibility: visible;
 }
 
 .work-wrapper .index-work-item img {
