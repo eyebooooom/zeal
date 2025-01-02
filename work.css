@@ -380,3 +380,21 @@ a {
     opacity: 1;
     visibility: visible;
 }
+
+@media screen and (max-width: 768px) {
+    .work-menu-container {
+        display: none;
+    }
+    
+    .hamburger-menu {
+        display: block;
+    }
+    
+    .work-nav-container {
+        padding: 0 20px;
+    }
+    
+    .work-logo img {
+        height: 35px;
+    }
+}

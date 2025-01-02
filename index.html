@@ -67,9 +67,29 @@
     <!-- 导航栏 -->
     <nav class="nav-container">
         <div class="logo">
-            <img src="assets/logo.svg" alt="Logo">
+            <a href="index.html?skipLoading=true">
+                <img src="assets/logo.svg" alt="Logo">
+            </a>
         </div>
         
+        <!-- 汉堡菜单按钮 -->
+        <div class="hamburger-menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-items">
+                <a href="index.html?skipLoading=true" class="active">Home</a>
+                <a href="work.html">Work</a>
+                <a href="about.html">About</a>
+                <button class="contact-btn">Contact</button>
+            </div>
+        </div>
+        
+        <!-- 原有的菜单容器 -->
         <div class="menu-container">
             <div class="menu-items">
                 <a href="#" class="active">Home</a>

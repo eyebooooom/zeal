@@ -69,3 +69,26 @@ function initFilterTags() {
         });
     });
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+    });
+
+    // 点击菜单项后关闭菜单
+    const menuItems = document.querySelectorAll('.mobile-menu-items a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            body.style.overflow = '';
+        });
+    });
+});

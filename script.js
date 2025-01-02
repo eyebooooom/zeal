@@ -8,31 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.querySelector('.main-content');
     const footer = document.querySelector('.footer');
     
-        // 初始化页脚样式
-        footer.style.visibility = 'hidden'; // 确保初始时页脚隐藏
-        footer.style.opacity = '0';
-        footer.style.transform = 'translateY(100%)';
+    // 初始化页脚样式
+    footer.style.visibility = 'hidden';
+    footer.style.opacity = '0';
+    footer.style.transform = 'translateY(100%)';
 
-    // 首先检查是否为移动设备
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        // 如果是移动设备，隐藏当前页面内容
-        document.body.style.display = 'none'; // 隐藏页面内容
-        window.location.href = 'https://muselink.cc/zeal';
-        return;
-    }
-
-    // 检查是否需要显示加载动画（仅在桌面端执行）
+    // 检查是否需要显示加载动画
     const shouldShowLoading = !sessionStorage.getItem('hasVisited') && 
                             !new URLSearchParams(window.location.search).has('skipLoading');
-
+    
     if (!shouldShowLoading) {
         // 直接显示内容，跳过加载动画
         if (loadingContainer) {
             loadingContainer.style.display = 'none';
             mainContent.classList.add('show');
             navContainer.classList.add('visible');
+            document.body.style.overflow = '';
         } else {
             console.error('未找到 loadingContainer 元素');
         }
@@ -55,16 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const delay = Math.random() * 50 + 20;
                 setTimeout(updateProgress, delay);
             } else {
-                mainContent.classList.add('show');
-                
+            mainContent.classList.add('show');               
                 mainContent.addEventListener('transitionend', () => {
                     navContainer.classList.add('visible');
-                    
+                    document.body.style.overflow = '';
                     loadingContainer.classList.add('transition');
-                    loadingContainer.addEventListener('animationend', () => {
-                        loadingContainer.remove();
-                        document.body.style.overflow = '';
-                    });
+                    loadingContainer.remove(); // 动画完成后移除
                 }, { once: true });
             }
         }
@@ -81,6 +68,26 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (error) {
         console.log('初始化滚动功能时出错:', error);
     }
+
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+    });
+
+    // 点击菜单项后关闭菜单
+    const menuItems = document.querySelectorAll('.mobile-menu-items a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            body.style.overflow = '';
+        });
+    });
 });
 
 // 筛选标签功能
