@@ -166,8 +166,9 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 16px;
+    flex-wrap: wrap;
 }
-/* 顶部标签栏样式 */
+
 .tag {
     padding: 10px 20px;
     border-radius: 46px;
@@ -397,4 +398,127 @@ a {
     .work-logo img {
         height: 35px;
     }
+
+    /* 调整标题和筛选器布局 */
+    .work-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 100px 20px 0 20px;
+    }
+
+    /* 调整标题大小 */
+    .work-heading {
+        font-size: 80px;
+        line-height: 80px;
+    }
+
+    /* 调整标签样式 */
+    .filter-tags {
+        width: 100%;
+        gap: 8px; /* 减小移动端标签间距 */
+        flex-wrap: nowrap; /* 移动端不换行 */
+        justify-content: space-between; /* 平均分配空间 */
+    }
+
+    .tag {
+        padding: 8px 12px; /* 减小内边距 */
+        font-size: 12px; /* 减小字体大小 */
+        line-height: 12px;
+        flex: 1; /* 让每个标签平均占据空间 */
+        text-align: center; /* 文字居中 */
+    }
+
+    /* 调整作品网格布局 */
+    .work-grid {
+        grid-template-columns: 1fr; /* 一列布局 */
+        gap: 24px;
+        max-width: calc(100% - 40px); /* 调整边距 */
+    }
+
+    /* 调整分隔线边距 */
+    .separator {
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+
+    /* 调整作品展示区域边距 */
+    .work-showcase {
+        padding: 30px 0;
+    }
+
+    /* 调整作品描述文字边距 */
+    .work-info p {
+        margin: 9px 0 50px 0; /* 减小底部间距 */
+    }
+
+    /* 隐藏移动端的分割线 */
+    .separator {
+        display: none; /* 隐藏分割线 */
+    }
+
+    .title-dot {
+        margin-top: 20px; /* 向上移动10px，原为40px */
+    }
+
+    /* 页脚移动端适配 */
+    .footer {
+        min-height: 500px; /* 减小最小高度 */
+        height: auto; /* 自适应高度 */
+        padding: 60px 0 20px; /* 调整内边距 */
+    }
+
+    .footer-logo {
+        position: relative; /* 改为相对定位 */
+        bottom: auto;
+        left: auto;
+    }
+
+    .footer-logo img {
+        width: 100%;
+        height: auto;
+        max-width: 800px; /* 限制logo最大宽度 */
+        margin: 0 auto;
+        display: block;
+    }
+
+    .footer-links-container {
+        position: relative; /* 改为相对定位 */
+        right: auto;
+        bottom: auto;
+        padding: 40px 20px 0; /* 添加内边距 */
+    }
+
+    .links-group-wrapper {
+        flex-direction: column; /* 链接组垂直排列 */
+        gap: 30px;
+    }
+
+    .link-group {
+        gap: 8px;
+    }
+
+    .link-group a {
+        margin-right: 0; /* 移除右边距 */
+        font-size: 18px; /* 减小字体大小 */
+    }
+
+    .link-group h3 {
+        font-size: 20px; /* 减小标题字体大小 */
+    }
+
+    .footer-bottom {
+        position: relative; /* 改为相对定位 */
+        right: auto;
+        bottom: auto;
+        text-align: center;
+        padding: 40px 20px 0; /* 添加内边距 */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-logo {
+        display: none; /* 隐藏移动端的 Logo */
+    }
+
 }
