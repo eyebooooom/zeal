@@ -924,16 +924,18 @@ a, button, .explore-button, .work-item {
     }
 }
 
-/* 隐藏自定义鼠标样式 */
-.cursor {
-    display: none;
-}
+@media screen and (max-width: 768px) {
+    /* 隐藏自定义鼠标样式 */
+    .cursor {
+        display: none;
+    }
 
-/* 恢复默认鼠标样式 */
-body {
-    cursor: auto;
-}
+    /* 恢复默认鼠标样式 */
+    body {
+        cursor: auto;
+    }
 
-a, button, .explore-button, .work-item {
-    cursor: auto;
+    a, button, .explore-button, .work-item {
+        cursor: auto;
+    }
 }
