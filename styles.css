@@ -224,7 +224,7 @@ a, button, .explore-button, .work-item {
 
     ._75 {
         font-size: 24px; /* 减小字体大小 */
-        bottom: 40px; /* 调整位置 */
+        bottom: 120px; /* 调整位置 */
     }
 
 }
@@ -837,7 +837,7 @@ a, button, .explore-button, .work-item {
 /* 移动端的 汉堡菜单联系方式 */
 @media screen and (max-width: 768px) {
     .mobile-contact-info {
-        margin-top: 20px;
+        margin-bottom: 40px;
         padding: 0 20px;
     }
 
