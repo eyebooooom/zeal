@@ -936,3 +936,63 @@ a, button, .explore-button, .work-item {
         cursor: auto;
     }
 }
+
+/* 添加移动端适配 */
+@media screen and (max-width: 768px) {
+    .first-work {
+        background-image: url('assets/h5-work1.jpg');
+        background-position: right bottom;
+    }
+
+    .work-wrapper .index-work-item img {
+        object-position: right bottom;
+        content: url(''); /* 清空原有图片 */
+    }
+
+    /* 为每个work-item单独设置移动端图片 */
+    .work-wrapper:nth-child(1) .index-work-item img {
+        content: url('assets/h5-work2.jpg');
+    }
+    
+    .work-wrapper:nth-child(2) .index-work-item img {
+        content: url('assets/h5-work3.jpg');
+    }
+    
+    .work-wrapper:nth-child(3) .index-work-item img {
+        content: url('assets/h5-work4.jpg');
+    }
+    
+    .work-wrapper:nth-child(4) .index-work-item img {
+        content: url('assets/h5-work5.jpg');
+    }
+    
+    .work-wrapper:nth-child(5) .index-work-item img {
+        content: url('assets/h5-work6.jpg');
+    }
+    
+    .work-wrapper:nth-child(6) .index-work-item img {
+        content: url('assets/h5-work7.jpg');
+    }
+    
+    .work-wrapper:nth-child(7) .index-work-item img {
+        content: url('assets/h5-work8.jpg');
+    }
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    /* 修改description的样式 */
+    .work-wrapper .description {
+        width: 70%;
+        font-size: 20px;
+    }
+    .description {
+        width: 70%;
+        font-size: 20px;
+    }
+    
+    /* 为第二个work-wrapper的description添加特殊样式 */
+    .work-wrapper:nth-child(2) .description {
+        color: #393939;
+    }
+}
