@@ -667,11 +667,11 @@ a, button, .explore-button, .work-item {
 /* 汉堡菜单样式 */
 .hamburger-menu {
     display: none; /* 默认隐藏 */
-    width: 30px;
+    width: 27px;
     height: 24px;
     position: fixed; /* 改为fixed以保持在视口内 */
     right: 20px; /* 设置距离右侧的距离 */
-    top: 30px; /* 可选：设置距离顶部的距离 */
+    top: 25px; /* 可选：设置距离顶部的距离 */
     cursor: none;
     z-index: 1001;
 }
