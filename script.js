@@ -4,6 +4,15 @@ console.log('脚本已加载');
 let progress = 0;
 let isFirstPhaseComplete = false;
 
+// 检查是否需要跳过加载动画
+const shouldShowLoading = !sessionStorage.getItem('hasVisited') && 
+                        !new URLSearchParams(window.location.search).has('skipLoading');
+
+if (!shouldShowLoading) {
+    isFirstPhaseComplete = true; // 如果跳过加载，直接设置为true
+    progress=100;
+}
+
 // 第一阶段加载函数（0-85%）
 function quickProgress() {
     const progressElement = document.querySelector('._75');
