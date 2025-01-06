@@ -585,7 +585,7 @@ a, button, .explore-button, .work-item {
    
     background: white;
     border-radius: 20px;
-    padding: 40px 0 36px 0;
+    padding: 30px 0 26px 0;
 }
 
 .qr-code {
@@ -729,7 +729,7 @@ a, button, .explore-button, .work-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
 
 .mobile-menu-items a {
@@ -875,7 +875,7 @@ a, button, .explore-button, .work-item {
         font-size: 16px;
         font-family: 'Zain', sans-serif;
         font-weight: 300;
-        margin-top: 16px; /* 保持顶部间距 */
+        margin-top: 6px; /* 保持顶部间距 */
     }
 
     .mobile-menu .email-box {
