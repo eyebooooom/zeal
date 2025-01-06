@@ -981,18 +981,14 @@ a, button, .explore-button, .work-item {
 
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
-    /* 修改description的样式 */
-    .work-wrapper .description {
-        width: 70%;
-        font-size: 20px;
+    /* 隐藏description和explore */
+
+    .work-wrapper .explore {
+        display: none; /* 隐藏探索按钮 */
     }
-    .description {
-        width: 70%;
-        font-size: 20px;
+
+ .explore {
+        display: none; /* 隐藏探索按钮 */
     }
-    
-    /* 为第二个work-wrapper的description添加特殊样式 */
-    .work-wrapper:nth-child(2) .description {
-        color: #393939;
-    }
+
 }

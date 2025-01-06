@@ -1,11 +1,31 @@
 console.log('脚本已加载');
 
+// 初始化变量
+let progress = 0;
+let isFirstPhaseComplete = false;
+
+// 第一阶段加载函数（0-85%）
+function quickProgress() {
+    const progressElement = document.querySelector('._75');
+    if (progressElement && progress < 85) {
+        progress += 2;
+        progressElement.textContent = `${progress}%`;
+        
+        const quickDelay = Math.random() * 20 + 10; // 10-30毫秒的随机延迟
+        setTimeout(quickProgress, quickDelay);
+    }
+}
+
+// 立即开始第一阶段
+setTimeout(quickProgress, 100); // 给予短暂延迟确保DOM元素已创建
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM已加载完成');
 
     const loadingContainer = document.querySelector('.loading-container');
-    const navContainer = document.querySelector('.nav-container');
+    const progressElement = document.querySelector('._75');
     const mainContent = document.querySelector('.main-content');
+    const navContainer = document.querySelector('.nav-container');
     const footer = document.querySelector('.footer');
     
     // 初始化页脚样式
@@ -30,14 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         // 禁用滚动
         document.body.style.overflow = 'hidden';
-
+        
         // 设置访问标记
         sessionStorage.setItem('hasVisited', 'true');
         
-        // 执行原有的加载动画逻辑
-        const progressElement = document.querySelector('._75');
-        let progress = 0;
-        
+        // 第二阶段加载（85-100%）
         function updateProgress() {
             if (progress < 100) {
                 progress++;
@@ -46,17 +63,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 const delay = Math.random() * 50 + 20;
                 setTimeout(updateProgress, delay);
             } else {
-            mainContent.classList.add('show');               
+                mainContent.classList.add('show');               
                 mainContent.addEventListener('transitionend', () => {
                     navContainer.classList.add('visible');
                     document.body.style.overflow = '';
                     loadingContainer.classList.add('transition');
-                    loadingContainer.remove(); // 动画完成后移除
+                    loadingContainer.remove();
                 }, { once: true });
             }
         }
 
-        setTimeout(updateProgress, 500);
+        // 监听资源加载完成后开始第二阶段
+        window.addEventListener('load', function() {
+            // 确保第一阶段已经达到85%
+            const checkProgress = setInterval(() => {
+                if (progress >= 85) {
+                    clearInterval(checkProgress);
+                    updateProgress();
+                }
+            }, 100);
+        });
     }
 
     // 初始化筛选标签功能
@@ -86,6 +112,29 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.classList.remove('active');
             mobileMenu.classList.remove('active');
             body.style.overflow = '';
+        });
+    });
+
+    // 添加移动端图片点击处理
+    const workItems = document.querySelectorAll('.index-work-item');
+    
+    workItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // 检查是否为移动端
+            if (window.innerWidth <= 768) {
+                // 获取对应的explore-button的onclick属性值
+                const exploreButton = this.querySelector('.explore-button');
+                if (exploreButton) {
+                    // 获取onclick属性中的URL
+                    const onclickAttr = exploreButton.getAttribute('onclick');
+                    if (onclickAttr) {
+                        // 提取URL
+                        const url = onclickAttr.match(/'([^']+)'/)[1];
+                        // 打开新页面
+                        window.open(url, '_blank');
+                    }
+                }
+            }
         });
     });
 });
