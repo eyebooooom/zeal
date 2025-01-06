@@ -103,7 +103,7 @@ a, button, .explore-button, .work-item {
 .first-work {
     width: 100%;
     height: 100vh;
-    background-image: url('assets/work1.jpg');
+    background-image: url('assets/h5-work1.jpg');
     background-size: cover;
     background-position: bottom;
 }
@@ -940,43 +940,13 @@ a, button, .explore-button, .work-item {
 /* 添加移动端适配 */
 @media screen and (max-width: 768px) {
     .first-work {
-        background-image: url('assets/h5-work1.jpg');
         background-position: right bottom;
     }
 
     .work-wrapper .index-work-item img {
         object-position: right bottom;
-        content: url(''); /* 清空原有图片 */
     }
 
-    /* 为每个work-item单独设置移动端图片 */
-    .work-wrapper:nth-child(1) .index-work-item img {
-        content: url('assets/h5-work2.jpg');
-    }
-    
-    .work-wrapper:nth-child(2) .index-work-item img {
-        content: url('assets/h5-work3.jpg');
-    }
-    
-    .work-wrapper:nth-child(3) .index-work-item img {
-        content: url('assets/h5-work4.jpg');
-    }
-    
-    .work-wrapper:nth-child(4) .index-work-item img {
-        content: url('assets/h5-work5.jpg');
-    }
-    
-    .work-wrapper:nth-child(5) .index-work-item img {
-        content: url('assets/h5-work6.jpg');
-    }
-    
-    .work-wrapper:nth-child(6) .index-work-item img {
-        content: url('assets/h5-work7.jpg');
-    }
-    
-    .work-wrapper:nth-child(7) .index-work-item img {
-        content: url('assets/h5-work8.jpg');
-    }
 }
 
 /* 移动端适配 */
@@ -991,4 +961,42 @@ a, button, .explore-button, .work-item {
         display: none; /* 隐藏探索按钮 */
     }
 
+}
+
+
+
+/* PC端适配 */
+@media screen and (min-width: 769px) {
+    .first-work {
+        background-image: url('assets/work1.jpg');
+        background-position: bottom;
+    }
+
+    .work-wrapper:nth-child(1) .index-work-item img {
+        content: url('assets/work2.jpg');
+    }
+    
+    .work-wrapper:nth-child(2) .index-work-item img {
+        content: url('assets/work3.jpg');
+    }
+    
+    .work-wrapper:nth-child(3) .index-work-item img {
+        content: url('assets/work4.jpg');
+    }
+    
+    .work-wrapper:nth-child(4) .index-work-item img {
+        content: url('assets/work5.jpg');
+    }
+    
+    .work-wrapper:nth-child(5) .index-work-item img {
+        content: url('assets/work6.jpg');
+    }
+    
+    .work-wrapper:nth-child(6) .index-work-item img {
+        content: url('assets/work7.jpg');
+    }
+    
+    .work-wrapper:nth-child(7) .index-work-item img {
+        content: url('assets/work8.jpg');
+    }
 }
